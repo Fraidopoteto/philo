@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 19:13:58 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/13 17:53:10 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/16 20:58:56 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@
 
 int main(int argc, char **argv)
 {
-	t_table table;
-	t_philo *philo = NULL;
-	t_fork  *fork = NULL;
+	t_table		table;
+	t_philo		*philo = NULL;
+	t_fork  	*fork = NULL;
 
 	if (argc < 5)
 		return (error("error: not enough arguments\n"));
 	else if (argc == 5)
 	{
-		if (init(argv, &table, &philo, &fork))
+		init_args(argv, &table);
+		if (init(&table, &philo, &fork))
 			return (1);
 	}
 	else if (argc == 6)
 	{
-		if (init_with_meals(argv, &table, &philo, &fork))
+		init_args_with_meals(argv, &table);
+		if (init_with_meals(&table, &philo, &fork))
 			return (1);
 	}
 	else if (argc > 6)

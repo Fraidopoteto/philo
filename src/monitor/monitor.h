@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   monitor.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 18:26:04 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/16 20:55:29 by joschmun         ###   ########.fr       */
+/*   Created: 2025/10/16 17:46:39 by joschmun          #+#    #+#             */
+/*   Updated: 2025/10/16 21:03:13 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MONITOR_H
+# define MONITOR_H
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
-
+#include <pthread.h>
+#include <stdio.h>
 #include <unistd.h>
 #include "init.h"
-#include "monitor.h"
 #include "utils.h"
 
-
-void    *routine(void *philo);
-int     check_alive(t_philo *philo);
-void    *monitor(void *philo_struct);
+int	check_alive(t_philo *philo);
+void *monitor(void *philo_struct);
 
 
 #endif

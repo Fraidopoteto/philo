@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:24:10 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/07 19:52:30 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/16 21:01:02 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ typedef struct s_philo
     t_table         *table_p;
     long long int   start_dying;
     int             meal_count;
+    t_mutex         data_mutex;
 }   t_philo;
 
 
-int    init_with_meals(char **argv, t_table *table, t_philo **philo, t_fork **fork);
-int    init(char **argv, t_table *table, t_philo **philo, t_fork **fork);
+void	init_args(char **argv, t_table *table);
+int	    init(t_table *table, t_philo **philo, t_fork **fork);
+void	init_args_with_meals(char **argv, t_table *table);
+int	    init_with_meals(t_table *table, t_philo **philo, t_fork **fork);
 
 
 #endif

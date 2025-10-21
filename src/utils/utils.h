@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.h                                          :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 18:26:04 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/16 20:55:29 by joschmun         ###   ########.fr       */
+/*   Created: 2025/10/16 17:31:15 by joschmun          #+#    #+#             */
+/*   Updated: 2025/10/16 21:04:07 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef UTILS_H
+# define UTILS_H
 
-#ifndef ROUTINE_H
-# define ROUTINE_H
-
-#include <unistd.h>
+#include <stdio.h>
+#include <pthread.h>
+#include <sys/time.h>
 #include "init.h"
-#include "monitor.h"
-#include "utils.h"
 
 
-void    *routine(void *philo);
-int     check_alive(t_philo *philo);
-void    *monitor(void *philo_struct);
+void			print(t_philo *philo, char *str);
+void			start_timer(t_table *table);
+long long int	get_time_stamp(long long int start_time);
 
 
 #endif
