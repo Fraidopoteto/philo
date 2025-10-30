@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:17:32 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/28 14:34:22 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/30 16:03:13 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 int	_take_forks(t_philo *philo)
 {
-	if (philo->table_p->number_of_philos == 1)
-		return (1);
 	if (philo->id % 2 == 1)
 	{
 		pthread_mutex_lock(&philo->left_fork->mutex);
@@ -87,6 +85,11 @@ void	*routine(void *philo_struct)
 	t_philo	*philo;
 
 	philo = (t_philo *)philo_struct;
+	if (philo->table_p->number_of_philos == 1)
+	{
+		print(philo, "has taken a fork");
+		return (NULL);
+	}
 	if (philo->id % 2 == 0)
 		usleep(100);
 	else if (philo->id == 0 && philo->table_p->number_of_philos % 2 != 0)
