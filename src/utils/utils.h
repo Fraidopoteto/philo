@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 17:31:15 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/28 16:32:12 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:15:30 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "routine.h"
 
 void			print(t_philo *philo, char *str);
-void			start_timer(t_table *table);
+void			start_timer(t_table *table, t_philo **philo);
 long long int	get_time_stamp(long long int start_time);
 int				routine_split(t_philo **philo);
 void			_free(t_philo *philo, t_fork *fork);

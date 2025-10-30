@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:17:32 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/30 16:03:13 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:36:44 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	*routine(void *philo_struct)
 	if (philo->table_p->number_of_philos == 1)
 	{
 		print(philo, "has taken a fork");
+		philo->table_p->dead = 1;
 		return (NULL);
 	}
 	if (philo->id % 2 == 0)

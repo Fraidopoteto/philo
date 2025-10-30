@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 17:31:06 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/28 16:32:02 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:13:20 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,19 @@ void	print(t_philo *philo, char *str)
 	pthread_mutex_unlock(&philo->table_p->dead_mutex);
 }
 
-void	start_timer(t_table *table)
+void	start_timer(t_table *table, t_philo **philo)
 {
 	struct timeval	tv;
+	int				i;
 
+	i = 0;
 	gettimeofday(&tv, NULL);
 	(*table).start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	while (i < table->number_of_philos)
+	{
+		(*philo)[i].start_dying = table->start_time;
+		i++;
+	}
 }
 
 long long int	get_time_stamp(long long int start_time)

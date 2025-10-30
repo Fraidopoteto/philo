@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:40:28 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/28 11:58:59 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/30 21:25:27 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	init(t_table *table, t_philo **philo, t_fork **fork)
 		(*philo)[i].left_fork = &(*fork)[i];
 		(*philo)[i].right_fork = &(*fork)[(i + 1) % table->number_of_philos];
 		(*philo)[i].meal_count = 0;
-		(*philo)[i].start_dying = table->start_time;
 		pthread_mutex_init(&(*fork)[i].mutex, NULL);
 		pthread_mutex_init(&(*philo)[i].data_mutex, NULL);
 		i++;
@@ -80,7 +79,6 @@ int	init_with_meals(t_table *table, t_philo **philo, t_fork **fork)
 		(*philo)[i].left_fork = &(*fork)[i];
 		(*philo)[i].right_fork = &(*fork)[(i + 1) % table->number_of_philos];
 		(*philo)[i].meal_count = 0;
-		(*philo)[i].start_dying = table->start_time;
 		pthread_mutex_init(&(*fork)[i].mutex, NULL);
 		pthread_mutex_init(&(*philo)[i].data_mutex, NULL);
 		i++;
