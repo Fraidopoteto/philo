@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 17:31:06 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/16 21:03:42 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:32:02 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-void    print(t_philo *philo, char *str)
+void	print(t_philo *philo, char *str)
 {
 	long long int	timestamp;
 
@@ -29,7 +29,7 @@ void    print(t_philo *philo, char *str)
 
 void	start_timer(t_table *table)
 {
-	struct timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	(*table).start_time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
@@ -38,9 +38,35 @@ void	start_timer(t_table *table)
 long long int	get_time_stamp(long long int start_time)
 {
 	long long int	time_stamp;
-	struct  		timeval tv;
+	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	time_stamp = (((tv.tv_sec * 1000) + (tv.tv_usec / 1000)) - start_time);
 	return (time_stamp);
+}
+
+int	routine_split(t_philo **philo)
+{
+	if (!check_alive((*philo)))
+	{
+		if (_eat((*philo)))
+			return (1);
+	}
+	if (!check_alive((*philo)))
+	{
+		if (_sleep((*philo)))
+			return (1);
+	}
+	if (!check_alive((*philo)))
+	{
+		if (_think((*philo)))
+			return (1);
+	}
+	return (0);
+}
+
+void	_free(t_philo *philo, t_fork *fork)
+{
+	free(philo);
+	free(fork);
 }

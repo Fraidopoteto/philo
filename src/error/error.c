@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:22:00 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/07 16:22:04 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:57:45 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 
-int error(char *str)
+int	error(char *str)
 {
 	printf("\n%s", str);
 	return (1);

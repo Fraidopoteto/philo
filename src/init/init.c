@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:40:28 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/16 21:00:41 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:58:59 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 
-void    init_args(char **argv, t_table *table)
+void	init_args(char **argv, t_table *table)
 {
 	table->dead = 0;
 	table->number_of_philos = atoi(argv[1]);
@@ -22,9 +22,9 @@ void    init_args(char **argv, t_table *table)
 	table->number_of_meals = -1;
 }
 
-int    init(t_table *table, t_philo **philo, t_fork **fork)
+int	init(t_table *table, t_philo **philo, t_fork **fork)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	*philo = calloc(table->number_of_philos, sizeof(t_philo));
@@ -33,7 +33,7 @@ int    init(t_table *table, t_philo **philo, t_fork **fork)
 	*fork = calloc(table->number_of_philos, sizeof(t_fork));
 	if (*fork == NULL)
 		return (1);
-	while(i < table->number_of_philos)
+	while (i < table->number_of_philos)
 	{
 		(*philo)[i].id = i;
 		(*fork)[i].id = i;
@@ -43,7 +43,7 @@ int    init(t_table *table, t_philo **philo, t_fork **fork)
 		(*philo)[i].meal_count = 0;
 		(*philo)[i].start_dying = table->start_time;
 		pthread_mutex_init(&(*fork)[i].mutex, NULL);
-    	pthread_mutex_init(&(*philo)[i].data_mutex, NULL);
+		pthread_mutex_init(&(*philo)[i].data_mutex, NULL);
 		i++;
 	}
 	pthread_mutex_init(&(table->dead_mutex), NULL);
@@ -51,7 +51,7 @@ int    init(t_table *table, t_philo **philo, t_fork **fork)
 	return (0);
 }
 
-void		init_args_with_meals(char **argv, t_table *table)
+void	init_args_with_meals(char **argv, t_table *table)
 {
 	table->dead = 0;
 	table->number_of_philos = atoi(argv[1]);
@@ -61,9 +61,9 @@ void		init_args_with_meals(char **argv, t_table *table)
 	table->number_of_meals = atoi(argv[5]);
 }
 
-int    init_with_meals(t_table *table, t_philo **philo, t_fork **fork)
+int	init_with_meals(t_table *table, t_philo **philo, t_fork **fork)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	*philo = calloc(table->number_of_philos + 1, sizeof(t_philo));
@@ -72,7 +72,7 @@ int    init_with_meals(t_table *table, t_philo **philo, t_fork **fork)
 	*fork = calloc(table->number_of_philos + 1, sizeof(t_fork));
 	if (*fork == NULL)
 		return (1);
-	while(i < table->number_of_philos)
+	while (i < table->number_of_philos)
 	{
 		(*philo)[i].id = i;
 		(*fork)[i].id = i;
@@ -82,7 +82,7 @@ int    init_with_meals(t_table *table, t_philo **philo, t_fork **fork)
 		(*philo)[i].meal_count = 0;
 		(*philo)[i].start_dying = table->start_time;
 		pthread_mutex_init(&(*fork)[i].mutex, NULL);
-    	pthread_mutex_init(&(*philo)[i].data_mutex, NULL);
+		pthread_mutex_init(&(*philo)[i].data_mutex, NULL);
 		i++;
 	}
 	pthread_mutex_init(&(table->dead_mutex), NULL);

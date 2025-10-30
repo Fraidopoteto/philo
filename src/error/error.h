@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:25:29 by joschmun          #+#    #+#             */
-/*   Updated: 2025/09/23 19:21:09 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:57:54 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-#include <stdio.h>
+# include <stdio.h>
 
-int error(char *str);
+int	error(char *str);
 
 #endif

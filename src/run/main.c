@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 19:13:58 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/16 20:58:56 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:32:35 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 #include "error.h"
 #include "run.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_table		table;
-	t_philo		*philo = NULL;
-	t_fork  	*fork = NULL;
+	t_table	table;
+	t_philo	*philo;
+	t_fork	*fork;
 
+	philo = NULL;
+	fork = NULL;
 	if (argc < 5)
 		return (error("error: not enough arguments\n"));
 	else if (argc == 5)
@@ -38,4 +40,5 @@ int main(int argc, char **argv)
 		return (error("error: too many arguments\n"));
 	start_timer(&table);
 	start_routine(&table, &philo);
+	_free(philo, fork);
 }
