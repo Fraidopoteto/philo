@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:17:32 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/31 04:46:47 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 04:53:44 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	_think(t_philo *philo)
 	if (check_alive(philo))
 		return(1);
 	print(philo, "is thinking");
-	if (smart_sleep(philo, 10))
+	if (smart_sleep(philo, 3))
 		return (1);
 	return (0);
 }
