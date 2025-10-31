@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:24:10 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/28 12:10:59 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 17:47:21 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <pthread.h>
+# include <limits.h>
 
 typedef pthread_mutex_t	t_mutex;
 
@@ -50,9 +51,9 @@ typedef struct s_philo
 	t_mutex			data_mutex;
 }	t_philo;
 
-void	init_args(char **argv, t_table *table);
+int		init_args(char **argv, t_table *table);
 int		init(t_table *table, t_philo **philo, t_fork **fork);
-void	init_args_with_meals(char **argv, t_table *table);
+int		init_args_with_meals(char **argv, t_table *table);
 int		init_with_meals(t_table *table, t_philo **philo, t_fork **fork);
 
 #endif

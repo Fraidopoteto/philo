@@ -6,20 +6,47 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 15:40:28 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/30 21:25:27 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 18:00:09 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 
-void	init_args(char **argv, t_table *table)
+int	ft_atol(const char *str)
+{
+	long long int	res;
+	int				i;
+
+	res = 0;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if (res > (LONG_MAX - (str[i] - '0')) / 10)
+			return (-1);
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	if (str[i] != '\0')
+		return (-1);
+	return ((int)res);
+}
+
+int	init_args(char **argv, t_table *table)
 {
 	table->dead = 0;
-	table->number_of_philos = atoi(argv[1]);
-	table->time_to_die = atoi(argv[2]);
-	table->time_to_eat = atoi(argv[3]);
-	table->time_to_sleep = atoi(argv[4]);
+	table->number_of_philos = ft_atol(argv[1]);
+	table->time_to_die = ft_atol(argv[2]);
+	table->time_to_eat = ft_atol(argv[3]);
+	table->time_to_sleep = ft_atol(argv[4]);
 	table->number_of_meals = -1;
+	if (table->number_of_philos <= 0 || table->time_to_die <= 0 ||
+		 table->time_to_eat <= 0 || table->time_to_sleep <= 0)
+		return (1);
+	return (0);
 }
 
 int	init(t_table *table, t_philo **philo, t_fork **fork)
@@ -50,14 +77,19 @@ int	init(t_table *table, t_philo **philo, t_fork **fork)
 	return (0);
 }
 
-void	init_args_with_meals(char **argv, t_table *table)
+int	init_args_with_meals(char **argv, t_table *table)
 {
 	table->dead = 0;
-	table->number_of_philos = atoi(argv[1]);
-	table->time_to_die = atoi(argv[2]);
-	table->time_to_eat = atoi(argv[3]);
-	table->time_to_sleep = atoi(argv[4]);
-	table->number_of_meals = atoi(argv[5]);
+	table->number_of_philos = ft_atol(argv[1]);
+	table->time_to_die = ft_atol(argv[2]);
+	table->time_to_eat = ft_atol(argv[3]);
+	table->time_to_sleep = ft_atol(argv[4]);
+	table->number_of_meals = ft_atol(argv[5]);
+	if (table->number_of_philos <= 0 || table->time_to_die <= 0 ||
+		 table->time_to_eat <= 0 || table->time_to_sleep <= 0 ||
+		 table->number_of_meals <= 0)
+		return (1);
+	return (0);
 }
 
 int	init_with_meals(t_table *table, t_philo **philo, t_fork **fork)

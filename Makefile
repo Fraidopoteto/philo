@@ -6,7 +6,7 @@
 #    By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/23 19:24:45 by joschmun          #+#    #+#              #
-#    Updated: 2025/10/31 13:37:33 by joschmun         ###   ########.fr        #
+#    Updated: 2025/10/31 17:51:07 by joschmun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ CFLAGS	+= -Werror
 CFLAGS  += -Wall -Wextra -Werror -pthread -g
 CFLAGS	+= $(ADDFLAGS)
 
--fsanitize=thread
 
 CPPFLAGS	:=
 CPPFLAGS	+= -I$(SRC_DIR)

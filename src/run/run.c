@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:23:16 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/31 05:17:41 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:00:13 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ int	pickup_right(t_philo *philo)
 	print(philo, "has taken a fork");
 	if (check_alive(philo))
 		return(1);
+	if (philo->table_p->number_of_philos == 1)
+	{
+		usleep(philo->table_p->time_to_die * 1000);
+		pthread_mutex_unlock(&philo->right_fork->mutex);
+		return (1);
+	}
 	pthread_mutex_lock(&philo->left_fork->mutex);
 	print(philo, "has taken a fork");
 	return (0);
