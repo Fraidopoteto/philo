@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 17:31:06 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/30 21:13:20 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 04:44:38 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,14 @@ long long int	get_time_stamp(long long int start_time)
 
 int	routine_split(t_philo **philo)
 {
-	if (!check_alive((*philo)))
-	{
-		if (_eat((*philo)))
-			return (1);
-	}
-	if (!check_alive((*philo)))
-	{
-		if (_sleep((*philo)))
-			return (1);
-	}
-	if (!check_alive((*philo)))
-	{
-		if (_think((*philo)))
-			return (1);
-	}
+	if (_take_forks((*philo)))
+		return (1);
+	if (_eat((*philo)))
+		return (1);
+	if (_sleep((*philo)))
+		return (1);
+	if (_think((*philo)))
+		return (1);
 	return (0);
 }
 

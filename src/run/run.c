@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschmun <joschmun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:23:16 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/28 12:13:00 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 04:39:27 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,40 @@ void	start_routine(t_table *table, t_philo **philo)
 		i++;
 	}
 	pthread_join(monitor_thread, NULL);
+}
+
+int smart_sleep(t_philo *philo, long long time)
+{
+	long long	start_time;
+
+	start_time = get_time_stamp(philo->table_p->start_time);
+	while ((get_time_stamp(philo->table_p->start_time) - start_time) < time)
+	{
+		if (check_alive(philo))
+			return(1);
+		usleep(100);
+	}
+	return(0);
+}
+
+int	pickup_right(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->right_fork->mutex);
+	print(philo, "has taken a fork");
+	if (check_alive(philo))
+		return(1);
+	pthread_mutex_lock(&philo->left_fork->mutex);
+	print(philo, "has taken a fork");
+	return (0);
+}
+
+int	pickup_left(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->left_fork->mutex);
+	print(philo, "has taken a fork");
+	if (check_alive(philo))
+		return(1);
+	pthread_mutex_lock(&philo->right_fork->mutex);
+	print(philo, "has taken a fork");
+	return (0);
 }
