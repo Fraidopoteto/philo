@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:23:16 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/31 04:39:27 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 05:17:41 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,18 @@ int	pickup_left(t_philo *philo)
 	print(philo, "has taken a fork");
 	return (0);
 }
+
+void putdown(t_philo *philo)
+{
+	if (philo->id % 2 == 0 && philo->id != 0)
+	{
+		pthread_mutex_unlock(&philo->left_fork->mutex);
+		pthread_mutex_unlock(&philo->right_fork->mutex);
+	}
+	else
+	{
+		pthread_mutex_unlock(&philo->right_fork->mutex);
+		pthread_mutex_unlock(&philo->left_fork->mutex);
+	}
+}
+

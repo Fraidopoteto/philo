@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:17:32 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/31 04:53:44 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 05:18:46 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,19 @@ int	_eat(t_philo *philo)
 	print(philo, "is eating");
 	if (smart_sleep(philo, philo->table_p->time_to_eat))
 	{
-		pthread_mutex_unlock(&philo->left_fork->mutex);
-		pthread_mutex_unlock(&philo->right_fork->mutex);
-		return (1);
+		if (philo->id % 2 == 0 && philo->id != 0)
+        {
+            pthread_mutex_unlock(&philo->left_fork->mutex);
+            pthread_mutex_unlock(&philo->right_fork->mutex);
+        }
+        else
+        {
+            pthread_mutex_unlock(&philo->right_fork->mutex);
+            pthread_mutex_unlock(&philo->left_fork->mutex);
+        }
+        return (1);
 	}
-	if (philo->id % 2 == 0 && philo->id != 0)
-	{
-		pthread_mutex_unlock(&philo->left_fork->mutex);
-		pthread_mutex_unlock(&philo->right_fork->mutex);
-	}
-	else
-	{
-		pthread_mutex_unlock(&philo->right_fork->mutex);
-		pthread_mutex_unlock(&philo->left_fork->mutex);
-	}
+	putdown(philo);
 	philo->meal_count++;
 	if (philo->meal_count == philo->table_p->number_of_meals)
 		return (1);
