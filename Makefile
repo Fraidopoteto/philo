@@ -6,7 +6,7 @@
 #    By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/23 19:24:45 by joschmun          #+#    #+#              #
-#    Updated: 2025/10/30 20:05:31 by joschmun         ###   ########.fr        #
+#    Updated: 2025/10/31 13:37:33 by joschmun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,7 @@ valtest:
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes ./$(NAME) $(ARGS)
 
 heltest:
-	valgrind --tool=helgrind ./$(NAME) $(ARGS)
+	valgrind -s --tool=helgrind ./$(NAME) $(ARGS)
 
 .PHONY: all clean fclean re
 .PHONY: valtest heltest

@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 18:17:32 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/31 05:18:46 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 13:35:23 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,24 @@ int	_take_forks(t_philo *philo)
 
 int	_eat(t_philo *philo)
 {
+	pthread_mutex_lock(&philo->data_mutex);
 	philo->start_dying = get_time_stamp(philo->table_p->start_time);
+	pthread_mutex_unlock(&philo->data_mutex);
 	print(philo, "is eating");
 	if (smart_sleep(philo, philo->table_p->time_to_eat))
 	{
-		if (philo->id % 2 == 0 && philo->id != 0)
-        {
-            pthread_mutex_unlock(&philo->left_fork->mutex);
-            pthread_mutex_unlock(&philo->right_fork->mutex);
-        }
-        else
-        {
-            pthread_mutex_unlock(&philo->right_fork->mutex);
-            pthread_mutex_unlock(&philo->left_fork->mutex);
-        }
+		putdown(philo);
         return (1);
 	}
 	putdown(philo);
+	pthread_mutex_lock(&philo->data_mutex);
 	philo->meal_count++;
 	if (philo->meal_count == philo->table_p->number_of_meals)
+	{
+		pthread_mutex_unlock(&philo->data_mutex);
 		return (1);
+	}
+	pthread_mutex_unlock(&philo->data_mutex);
 	return (0);
 }
 

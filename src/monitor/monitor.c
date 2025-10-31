@@ -6,7 +6,7 @@
 /*   By: joschmun <joschmun@student.42wolfsburg>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 17:46:44 by joschmun          #+#    #+#             */
-/*   Updated: 2025/10/31 02:02:22 by joschmun         ###   ########.fr       */
+/*   Updated: 2025/10/31 13:36:59 by joschmun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ static int	_all_have_eaten(t_philo **philo)
 	j = 0;
 	while (i < (*philo)->table_p->number_of_philos)
 	{
+		pthread_mutex_lock(&(*philo)[i].data_mutex);
 		if ((*philo)[i].meal_count == (*philo)->table_p->number_of_meals)
 			j++;
+		pthread_mutex_unlock(&(*philo)[i].data_mutex);
 		i++;
 	}
 	if (j == (*philo)->table_p->number_of_philos)
